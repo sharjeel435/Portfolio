@@ -8,7 +8,7 @@ const projects = [
         desc: 'Built a modern, dynamic cryptocurrency tracker application entirely through vibe coding and prompt engineering.',
         tags: ['React', 'Vite', 'Tailwind', 'AI'],
         link: 'https://personalizedcrypto2025.vercel.app/',
-        image: '/proof/Capture3.PNG'
+        image: '/proof/crypto_tracker_app_1771689228918.png'
     },
     {
         title: 'Naseem Collections Store',
@@ -16,7 +16,7 @@ const projects = [
         desc: 'Designed and optimized a high-converting ecommerce storefront, ensuring rapid load times and seamless user flows.',
         tags: ['Shopify', 'Liquid', 'CRO'],
         link: 'https://naseemcollections.store',
-        image: '/proof/NASEEM STORE 4 MONTH SALE 5 M.PNG'
+        image: '/proof/ecommerce_store_design_1771689266380.png'
     },
     {
         title: 'Automated Growth Engine',
@@ -24,7 +24,7 @@ const projects = [
         desc: 'Built an automated pipeline connecting Meta Lead Ads via Zapier/Webhooks directly into a custom CRM for instant sales outreach.',
         tags: ['APIs', 'Node.js', 'Zapier'],
         link: '#',
-        image: '/proof/LATEST DASHBOARD.PNG'
+        image: '/proof/automated_growth_dashboard_1771689293725.png'
     }
 ];
 
