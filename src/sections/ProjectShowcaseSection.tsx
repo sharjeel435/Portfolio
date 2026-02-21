@@ -7,21 +7,24 @@ const projects = [
         category: 'Prompt-Driven Development',
         desc: 'Built a modern, dynamic cryptocurrency tracker application entirely through vibe coding and prompt engineering.',
         tags: ['React', 'Vite', 'Tailwind', 'AI'],
-        link: 'https://personalizedcrypto2025.vercel.app/'
+        link: 'https://personalizedcrypto2025.vercel.app/',
+        image: '/proof/Capture3.PNG'
     },
     {
         title: 'Naseem Collections Store',
         category: 'Shopify Store Architecture',
         desc: 'Designed and optimized a high-converting ecommerce storefront, ensuring rapid load times and seamless user flows.',
         tags: ['Shopify', 'Liquid', 'CRO'],
-        link: 'https://naseemcollections.store'
+        link: 'https://naseemcollections.store',
+        image: '/proof/NASEEM STORE 4 MONTH SALE 5 M.PNG'
     },
     {
         title: 'Automated Growth Engine',
         category: 'Growth Systems',
         desc: 'Built an automated pipeline connecting Meta Lead Ads via Zapier/Webhooks directly into a custom CRM for instant sales outreach.',
         tags: ['APIs', 'Node.js', 'Zapier'],
-        link: '#'
+        link: '#',
+        image: '/proof/LATEST DASHBOARD.PNG'
     }
 ];
 
@@ -44,9 +47,9 @@ export default function ProjectShowcaseSection() {
                             transition={{ delay: i * 0.1 }}
                             className="group relative rounded-2xl bg-card border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 flex flex-col"
                         >
-                            <div className="h-48 bg-white/5 relative overflow-hidden flex items-center justify-center shrink-0">
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <span className="text-foreground/30 font-medium tracking-widest uppercase text-sm">{project.category}</span>
+                            <div className="h-48 relative overflow-hidden flex items-center justify-center shrink-0">
+                                <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-100" />
                             </div>
                             <div className="p-6 flex flex-col flex-1">
                                 <h3 className="text-xl font-bold mb-3">{project.title}</h3>
