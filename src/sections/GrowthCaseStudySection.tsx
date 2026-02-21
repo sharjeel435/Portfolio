@@ -33,7 +33,7 @@ export default function GrowthCaseStudySection() {
                 {/* Animated Metrics */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                     {[
-                        { label: 'Revenue Generated', value: 4000000, symbol: 'PKR ', suffix: '+' },
+                        { label: 'Revenue Generated', value: 4, symbol: '', suffix: 'M+ PKR' },
                         { label: 'Growth YoY', value: 350, suffix: '%' },
                         { label: 'Average ROAS', value: 3.8, suffix: 'x' },
                         { label: 'Timeline (Days)', value: 90 },
@@ -43,17 +43,12 @@ export default function GrowthCaseStudySection() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            className="flex flex-col items-center justify-center p-6 bg-background rounded-2xl border border-white/5 h-full text-center relative overflow-hidden"
+                            className="flex flex-col items-center justify-center p-8 bg-background rounded-3xl border border-white/5 h-full text-center hover:border-primary/30 transition-colors"
                         >
-                            <div className="flex flex-col items-center">
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-sm md:text-base font-bold text-foreground/40">PKR</span>
-                                    <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gradient tracking-tighter">
-                                        <Counter from={0} to={metric.value} symbol="" suffix={metric.suffix} />
-                                    </div>
-                                </div>
-                                <div className="text-[10px] md:text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mt-2">{metric.label}</div>
+                            <div className="text-4xl lg:text-5xl font-extrabold text-gradient mb-3 tracking-tighter">
+                                <Counter from={0} to={metric.value} symbol={metric.symbol} suffix={metric.suffix} />
                             </div>
+                            <div className="text-[10px] md:text-xs font-bold text-foreground/40 uppercase tracking-[0.2em]">{metric.label}</div>
                         </motion.div>
                     ))}
                 </div>

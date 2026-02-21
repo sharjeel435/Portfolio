@@ -33,32 +33,49 @@ export default function ResultsProofSection() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {proofImages.map((img, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: (i % 4) * 0.1 }}
-                            className="relative group cursor-pointer rounded-xl overflow-hidden border border-white/5 bg-white/5 shadow-lg"
-                            onClick={() => setSelectedImg(`/proof/${img}`)}
-                        >
-                            <div className="aspect-[4/3] overflow-hidden">
+                <div className="relative group/slider overflow-hidden">
+                    <motion.div
+                        className="flex gap-6 cursor-grab active:cursor-grabbing py-8 px-4"
+                        drag="x"
+                        dragConstraints={{ right: 0, left: -((proofImages.length * 340) - window.innerWidth + 200) }}
+                        whileTap={{ cursor: 'grabbing' }}
+                    >
+                        {proofImages.map((img, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.05 }}
+                                className="relative flex-shrink-0 w-[300px] h-[225px] rounded-3xl overflow-hidden border border-white/5 bg-white/5 shadow-2xl group transition-all duration-500 hover:border-primary/50"
+                                onClick={() => setSelectedImg(`/proof/${img}`)}
+                            >
                                 <img
                                     src={`/proof/${img}`}
                                     alt="Proof metric"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-110"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-75 group-hover:brightness-100"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-                                <div className="bg-white/10 p-3 rounded-full border border-white/20 backdrop-blur-md">
-                                    <ZoomIn className="text-white w-6 h-6" />
+                                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                                    <div className="bg-white/10 p-4 rounded-full border border-white/20 backdrop-blur-md">
+                                        <ZoomIn className="text-white w-6 h-6" />
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                                <div className="absolute top-4 right-4">
+                                    <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                                        Metric #{i + 1}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* Visual Hint */}
+                    <div className="flex justify-center gap-3 mt-8">
+                        <div className="h-1.5 w-12 bg-primary rounded-full" />
+                        <div className="h-1.5 w-4 bg-white/10 rounded-full" />
+                        <div className="h-1.5 w-4 bg-white/10 rounded-full" />
+                    </div>
                 </div>
             </div>
 
