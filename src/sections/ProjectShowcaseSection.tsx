@@ -3,22 +3,25 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
-        title: 'Headless Shopify Migration',
-        category: 'Architecture & Build',
-        desc: 'Led the migration from monolithic Shopify to a headless React frontend, decreasing page load by 2.1s and lifting CVR.',
-        tags: ['React', 'Shopify Plus', 'GraphQL']
+        title: 'Personalized Crypto App',
+        category: 'Prompt-Driven Development',
+        desc: 'Built a modern, dynamic cryptocurrency tracker application entirely through vibe coding and prompt engineering.',
+        tags: ['React', 'Vite', 'Tailwind', 'AI'],
+        link: 'https://personalizedcrypto2025.vercel.app/'
+    },
+    {
+        title: 'Naseem Collections Store',
+        category: 'Shopify Store Architecture',
+        desc: 'Designed and optimized a high-converting ecommerce storefront, ensuring rapid load times and seamless user flows.',
+        tags: ['Shopify', 'Liquid', 'CRO'],
+        link: 'https://naseemcollections.store'
     },
     {
         title: 'Automated Growth Engine',
         category: 'Growth Systems',
         desc: 'Built an automated pipeline connecting Meta Lead Ads via Zapier/Webhooks directly into a custom CRM for instant sales outreach.',
-        tags: ['APIs', 'Node.js', 'Zapier']
-    },
-    {
-        title: 'Real-time Metrics Dashboard',
-        category: 'Data Analytics',
-        desc: 'Developed an internal dashboard to monitor ROAS, LTV, and CAC blended across 4 ad platforms in real time.',
-        tags: ['SQL', 'Data Studio', 'Python']
+        tags: ['APIs', 'Node.js', 'Zapier'],
+        link: '#'
     }
 ];
 
@@ -56,7 +59,9 @@ export default function ProjectShowcaseSection() {
                                     ))}
                                 </div>
                                 <div className="flex gap-4 mt-auto pt-4 border-t border-white/10">
-                                    <button className="text-foreground/60 hover:text-primary transition-colors disabled:opacity-50"><ExternalLink size={20} /></button>
+                                    {project.link !== '#' && (
+                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors disabled:opacity-50"><ExternalLink size={20} /></a>
+                                    )}
                                     <button className="text-foreground/60 hover:text-primary transition-colors disabled:opacity-50"><Github size={20} /></button>
                                 </div>
                             </div>
