@@ -43,12 +43,17 @@ export default function GrowthCaseStudySection() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            className="flex flex-col items-center justify-center p-6 bg-background rounded-2xl border border-white/5 h-full text-center"
+                            className="flex flex-col items-center justify-center p-6 bg-background rounded-2xl border border-white/5 h-full text-center relative overflow-hidden"
                         >
-                            <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gradient mb-2 break-all whitespace-nowrap">
-                                <Counter from={0} to={metric.value} symbol={metric.symbol} suffix={metric.suffix} />
+                            <div className="flex flex-col items-center">
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-sm md:text-base font-bold text-foreground/40">PKR</span>
+                                    <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gradient tracking-tighter">
+                                        <Counter from={0} to={metric.value} symbol="" suffix={metric.suffix} />
+                                    </div>
+                                </div>
+                                <div className="text-[10px] md:text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mt-2">{metric.label}</div>
                             </div>
-                            <div className="text-sm text-foreground/60 uppercase tracking-wider text-center">{metric.label}</div>
                         </motion.div>
                     ))}
                 </div>
