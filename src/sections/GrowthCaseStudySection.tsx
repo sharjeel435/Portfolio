@@ -43,9 +43,9 @@ export default function GrowthCaseStudySection() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            className="flex flex-col items-center justify-center p-6 bg-background rounded-2xl border border-white/5"
+                            className="flex flex-col items-center justify-center p-6 bg-background rounded-2xl border border-white/5 h-full text-center"
                         >
-                            <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-2">
+                            <div className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gradient mb-2 break-all whitespace-nowrap">
                                 <Counter from={0} to={metric.value} symbol={metric.symbol} suffix={metric.suffix} />
                             </div>
                             <div className="text-sm text-foreground/60 uppercase tracking-wider text-center">{metric.label}</div>
