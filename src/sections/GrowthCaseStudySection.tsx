@@ -30,15 +30,10 @@ export default function GrowthCaseStudySection() {
     return (
         <section id="case-study" className="py-24 relative bg-card">
             <div className="container mx-auto px-6 max-w-5xl">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6">Growth <span className="text-gradient">Case Study</span></h2>
-                    <p className="text-xl text-primary-light font-medium">Scaling to 4M Revenue in 90 Days</p>
-                </div>
-
                 {/* Animated Metrics */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                     {[
-                        { label: 'Revenue Generated', value: 4000000, symbol: '$', suffix: '+' },
+                        { label: 'Revenue Generated', value: 4000000, symbol: 'PKR ', suffix: '+' },
                         { label: 'Growth YoY', value: 350, suffix: '%' },
                         { label: 'Average ROAS', value: 3.8, suffix: 'x' },
                         { label: 'Timeline (Days)', value: 90 },
