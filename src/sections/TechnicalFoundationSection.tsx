@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { Database, LayoutTemplate, Activity, Network, LineChart, Code2 } from 'lucide-react';
 
 const techs = [
-    { icon: Network, title: 'API Integrations', desc: 'Connecting diverse SaaS platforms (Shopify, Klaviyo, Meta) into unified workflows.' },
-    { icon: Activity, title: 'Event Tracking Architecture', desc: 'Deploying server-side tracking (GTM, CAPI) for pixel-perfect attribution.' },
-    { icon: LayoutTemplate, title: 'Funnel System Design', desc: 'Architecting high-converting landers and post-purchase upsell flows.' },
-    { icon: Database, title: 'Database Logic', desc: 'Designing optimized schemas and understanding relational vs NoSQL data stores.' },
+    { icon: Network, title: 'Shopify Store Architecture', desc: 'Designing high-converting storefronts with robust backend workflows.' },
+    { icon: LayoutTemplate, title: 'Website Vibe Coding', desc: 'Building modern, prompt-driven web applications and functional prototypes.' },
+    { icon: Activity, title: 'Snapchat & TikTok Ads', desc: 'Scaling direct-response performance campaigns across social channels.' },
+    { icon: Database, title: 'Project Management', desc: 'Leading agile teams and crossing the bridge between technical execution and revenue goals.' },
     { icon: LineChart, title: 'Data-Driven Decisions', desc: 'Writing SQL queries to extract insights and calculate CLV/CAC ratios.' },
     { icon: Code2, title: 'Debugging & Optimization', desc: 'Reading logs, profiling network waterfalls, and squashing elusive bugs.' },
 ];

@@ -24,8 +24,8 @@ export default function HeroSection() {
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight">
-                        Technical Project Manager <br className="hidden md:block" />
-                        <span className="text-gradient">Ecommerce & Growth Systems</span>
+                        Sharjeel Safdar <br className="hidden md:block" />
+                        <span className="text-gradient">Technical Project Manager</span>
                     </h1>
 
                     <p className="text-xl md:text-2xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
