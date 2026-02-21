@@ -17,14 +17,6 @@ const projects = [
         tags: ['Shopify', 'Liquid', 'CRO'],
         link: 'https://naseemcollections.store',
         image: '/proof/ecommerce_store_design_1771689266380.png'
-    },
-    {
-        title: 'Automated Growth Engine',
-        category: 'Growth Systems',
-        desc: 'Built an automated pipeline connecting Meta Lead Ads via Zapier/Webhooks directly into a custom CRM for instant sales outreach.',
-        tags: ['APIs', 'Node.js', 'Zapier'],
-        link: '#',
-        image: '/proof/automated_growth_dashboard_1771689293725.png'
     }
 ];
 
