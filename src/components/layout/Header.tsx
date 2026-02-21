@@ -28,7 +28,7 @@ export default function Header() {
         >
             <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
                 <a href="#" className="text-xl font-bold tracking-tighter">
-                    <span className="text-gradient">TPM</span>.Portfolio
+                    <span className="text-gradient">Sharjeel</span>.Portfolio
                 </a>
 
                 {/* Desktop Nav */}
