@@ -33,20 +33,29 @@ export default function ResultsProofSection() {
                     </div>
                 </div>
 
-                <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {proofImages.map((img, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: (i % 4) * 0.1 }}
-                            className="relative group cursor-pointer rounded-lg overflow-hidden border border-white/10"
+                            className="relative group cursor-pointer rounded-xl overflow-hidden border border-white/5 bg-white/5 shadow-lg"
                             onClick={() => setSelectedImg(`/proof/${img}`)}
                         >
-                            <img src={`/proof/${img}`} alt="Proof metric" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                            <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <ZoomIn className="text-white w-8 h-8" />
+                            <div className="aspect-[4/3] overflow-hidden">
+                                <img
+                                    src={`/proof/${img}`}
+                                    alt="Proof metric"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-110"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                                <div className="bg-white/10 p-3 rounded-full border border-white/20 backdrop-blur-md">
+                                    <ZoomIn className="text-white w-6 h-6" />
+                                </div>
                             </div>
                         </motion.div>
                     ))}

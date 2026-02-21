@@ -29,35 +29,53 @@ export default function ProjectShowcaseSection() {
                     <p className="text-lg text-foreground/70">A selection of technical and growth implementations.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
                     {projects.map((project, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="group relative rounded-2xl bg-card border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 flex flex-col"
+                            transition={{ delay: i * 0.1, duration: 0.6 }}
+                            className="group relative rounded-3xl bg-card border border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-500 flex flex-col shadow-2xl"
                         >
-                            <div className="h-48 relative overflow-hidden flex items-center justify-center shrink-0">
-                                <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-100" />
+                            <div className="h-64 relative overflow-hidden flex items-center justify-center shrink-0">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent opacity-100" />
+                                <div className="absolute bottom-4 left-6">
+                                    <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 bg-primary/20 backdrop-blur-md rounded-full text-primary-light border border-primary/20">
+                                        {project.category}
+                                    </span>
+                                </div>
                             </div>
-                            <div className="p-6 flex flex-col flex-1">
-                                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                                <p className="text-foreground/70 text-sm mb-6 line-clamp-3">{project.desc}</p>
-                                <div className="flex flex-wrap gap-2 mt-auto mb-6">
+                            <div className="p-8 flex flex-col flex-1">
+                                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{project.title}</h3>
+                                <p className="text-foreground/70 text-base mb-8 leading-relaxed">{project.desc}</p>
+                                <div className="flex flex-wrap gap-2 mb-8">
                                     {project.tags.map(tag => (
-                                        <span key={tag} className="text-xs font-medium px-2 py-1 rounded bg-white/5 text-foreground/80">
+                                        <span key={tag} className="text-xs font-semibold px-3 py-1 rounded-full bg-white/5 text-foreground/60 border border-white/5">
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="flex gap-4 mt-auto pt-4 border-t border-white/10">
+                                <div className="flex gap-4 mt-auto pt-6 border-t border-white/5">
                                     {project.link !== '#' && (
-                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors disabled:opacity-50"><ExternalLink size={20} /></a>
+                                        <a
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-2 text-sm font-semibold text-primary-light hover:text-primary transition-colors"
+                                        >
+                                            <ExternalLink size={18} /> Live Preview
+                                        </a>
                                     )}
-                                    <button className="text-foreground/60 hover:text-primary transition-colors disabled:opacity-50"><Github size={20} /></button>
+                                    <button className="flex items-center gap-2 text-sm font-semibold text-foreground/40 hover:text-foreground/80 transition-colors">
+                                        <Github size={18} /> Source
+                                    </button>
                                 </div>
                             </div>
                         </motion.div>
