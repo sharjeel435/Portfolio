@@ -194,7 +194,7 @@ function LineConnector({ index }: { index: number }) {
 
 export default function TechnicalFoundationSection() {
     return (
-        <section id="technical" className="py-28 relative overflow-hidden">
+        <section id="technical" className="py-16 sm:py-28 relative overflow-hidden">
             <div className="absolute inset-0 bg-card" />
             <div className="absolute inset-0 bg-dot-grid opacity-40 pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-px section-divider" />
@@ -213,7 +213,7 @@ export default function TechnicalFoundationSection() {
                 transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
             />
 
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
@@ -236,7 +236,7 @@ export default function TechnicalFoundationSection() {
                         Skills In Depth
                     </motion.div>
 
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-5">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-5">
                         Skills &{' '}
                         <span className="text-gradient-cyan">Expertise</span>
                     </h2>

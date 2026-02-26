@@ -24,7 +24,7 @@ export default function ResultsProofSection() {
     const goNext = () => setSelectedIdx((i) => (i !== null ? (i + 1) % proofImages.length : null));
 
     return (
-        <section id="proof" className="py-28 relative overflow-hidden">
+        <section id="proof" className="py-16 sm:py-28 relative overflow-hidden">
             <div className="absolute inset-0 bg-background" />
             <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-px section-divider" />
@@ -32,7 +32,7 @@ export default function ResultsProofSection() {
             {/* Top glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-40 pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%)' }} />
 
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -44,7 +44,7 @@ export default function ResultsProofSection() {
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-amber-500/25 text-xs font-bold text-amber-400 uppercase tracking-widest mb-5">
                         📊 Social Proof
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-5">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-5">
                         Results &{' '}
                         <span className="text-gradient">Proof</span>
                     </h2>
@@ -57,7 +57,7 @@ export default function ResultsProofSection() {
                 </motion.div>
 
                 {/* Masonry-like Grid */}
-                <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                <div className="columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-4 space-y-3 sm:space-y-4">
                     {proofImages.map((img, i) => (
                         <motion.div
                             key={i}
@@ -111,7 +111,7 @@ export default function ResultsProofSection() {
 
                         {/* Prev */}
                         <button
-                            className="absolute left-5 top-1/2 -translate-y-1/2 w-11 h-11 glass rounded-xl border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors z-[101]"
+                            className="absolute left-2 sm:left-5 top-1/2 -translate-y-1/2 w-9 sm:w-11 h-9 sm:h-11 glass rounded-xl border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors z-[101]"
                             onClick={(e) => { e.stopPropagation(); goPrev(); }}
                         >
                             <ChevronLeft size={20} />
@@ -119,7 +119,7 @@ export default function ResultsProofSection() {
 
                         {/* Next */}
                         <button
-                            className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 glass rounded-xl border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors z-[101]"
+                            className="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 w-9 sm:w-11 h-9 sm:h-11 glass rounded-xl border border-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors z-[101]"
                             onClick={(e) => { e.stopPropagation(); goNext(); }}
                         >
                             <ChevronRight size={20} />

@@ -5,6 +5,14 @@ export default {
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
+        screens: {
+            xs: '390px',
+            sm: '640px',
+            md: '768px',
+            lg: '1024px',
+            xl: '1280px',
+            '2xl': '1536px',
+        },
         extend: {
             colors: {
                 background: '#05050a',
@@ -70,7 +78,7 @@ export default {
                 'card': '0 4px 40px rgba(0,0,0,0.6)',
                 'card-hover': '0 8px 60px rgba(124,58,237,0.2)',
             }
-        },
+        }
     },
     plugins: [],
 }

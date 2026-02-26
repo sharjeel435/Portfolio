@@ -201,7 +201,7 @@ const particles = Array.from({ length: 20 }, (_, i) => ({
 
 export default function ExecutionLeadershipSection() {
     return (
-        <section id="leadership" className="py-28 relative bg-background overflow-hidden">
+        <section id="leadership" className="py-16 sm:py-28 relative bg-background overflow-hidden">
             {/* Grid bg */}
             <div className="absolute inset-0 bg-grid opacity-60 pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-px section-divider" />
@@ -223,7 +223,7 @@ export default function ExecutionLeadershipSection() {
                 transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
             />
 
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
@@ -247,7 +247,7 @@ export default function ExecutionLeadershipSection() {
                         Core Skills
                     </motion.div>
 
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-5">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-5">
                         What I{' '}
                         <motion.span
                             className="text-gradient inline-block"

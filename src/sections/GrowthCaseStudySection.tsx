@@ -79,13 +79,13 @@ const metrics = [
 
 export default function GrowthCaseStudySection() {
     return (
-        <section id="case-study" className="py-28 relative overflow-hidden">
+        <section id="case-study" className="py-16 sm:py-28 relative overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-background" />
             <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-px section-divider" />
 
-            <div className="container mx-auto px-6 max-w-6xl relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -97,7 +97,7 @@ export default function GrowthCaseStudySection() {
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-pink-500/25 text-xs font-bold text-pink-400 uppercase tracking-widest mb-5">
                         📈 Growth Case Study
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-4">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-4">
                         From{' '}
                         <span className="text-gradient-pink">$1M → $4M</span>
                         {' '}PKR
@@ -117,12 +117,12 @@ export default function GrowthCaseStudySection() {
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1, duration: 0.6 }}
                             whileHover={{ y: -6, scale: 1.04 }}
-                            className={`relative p-7 rounded-2xl border ${metric.border} bg-gradient-to-br ${metric.bg} backdrop-blur-sm text-center stat-card overflow-hidden`}
+                            className={`relative p-4 sm:p-7 rounded-2xl border ${metric.border} bg-gradient-to-br ${metric.bg} backdrop-blur-sm text-center stat-card overflow-hidden`}
                         >
                             <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mx-auto mb-4`}>
                                 <metric.icon className={`w-5 h-5 ${metric.color}`} />
                             </div>
-                            <div className={`text-3xl lg:text-4xl font-black ${metric.color} mb-2 tracking-tighter`}>
+                            <div className={`text-2xl sm:text-3xl lg:text-4xl font-black ${metric.color} mb-2 tracking-tighter`}>
                                 <Counter
                                     from={0}
                                     to={metric.value}
@@ -189,7 +189,7 @@ export default function GrowthCaseStudySection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="p-8 rounded-2xl glass-card border border-white/5"
+                    className="p-5 sm:p-8 rounded-2xl glass-card border border-white/5"
                 >
                     <h3 className="text-xl font-bold mb-8 text-center">Execution Framework & Coordination</h3>
                     <div className="grid md:grid-cols-3 gap-6">

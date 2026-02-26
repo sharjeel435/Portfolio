@@ -98,7 +98,7 @@ export default function HeroSection() {
     const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
     return (
-        <section ref={ref} className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <section ref={ref} className="relative min-h-screen flex items-center justify-center pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden">
             {/* Parallax background layer */}
             <motion.div style={{ y }} className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0 bg-background" />
@@ -127,14 +127,14 @@ export default function HeroSection() {
 
             <motion.div
                 style={{ opacity }}
-                className="container mx-auto px-6 max-w-6xl relative z-10 text-center"
+                className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10 text-center"
             >
                 {/* Badge */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.7, y: -20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                    className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass border border-primary/20 text-sm font-medium text-primary-light mb-10 shadow-glow-violet"
+                    className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 rounded-full glass border border-primary/20 text-xs sm:text-sm font-medium text-primary-light mb-6 sm:mb-10 shadow-glow-violet"
                 >
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-light opacity-75" />
@@ -153,14 +153,14 @@ export default function HeroSection() {
 
                 {/* NAME — letter by letter */}
                 <div className="perspective-1000 mb-3">
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
+                    <h1 className="text-[2.4rem] xs:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9]">
                         <motion.div className="block mb-1 overflow-hidden">
                             <AnimatedName text="Sharjeel Safdar" delay={0.2} />
                         </motion.div>
 
                         {/* Typewriter role line */}
                         <motion.div
-                            className="block text-4xl md:text-6xl lg:text-7xl mt-3"
+                            className="block text-[2rem] xs:text-4xl md:text-6xl lg:text-7xl mt-3"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.4, duration: 0.4 }}
@@ -170,7 +170,7 @@ export default function HeroSection() {
 
                         {/* Animated tagline */}
                         <motion.div
-                            className="block text-foreground/30 text-xl md:text-2xl lg:text-3xl mt-5 font-medium tracking-wide"
+                            className="block text-foreground/30 text-sm sm:text-xl md:text-2xl lg:text-3xl mt-4 sm:mt-5 font-medium tracking-wide"
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 2.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -195,7 +195,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2.6, duration: 0.7 }}
-                    className="text-lg md:text-xl text-foreground/50 max-w-2xl mx-auto leading-relaxed mb-10 mt-8"
+                    className="text-sm sm:text-lg md:text-xl text-foreground/50 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 mt-5 sm:mt-8 px-2 sm:px-0"
                 >
                     I bridge the gap between engineering and revenue. Scaling ecommerce brands
                     through{' '}
@@ -233,7 +233,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 3.0, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-16"
                 >
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
                         <Button
@@ -264,7 +264,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 3.4, duration: 0.6 }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                    className="flex flex-wrap items-center justify-center gap-3"
                 >
                     {floatingStats.map((stat, i) => (
                         <motion.div
@@ -291,7 +291,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 4, duration: 0.6 }}
-                    className="mt-16 flex flex-col items-center gap-2"
+                    className="mt-10 sm:mt-16 flex flex-col items-center gap-2"
                 >
                     <motion.span
                         animate={{ opacity: [0.3, 0.7, 0.3] }}

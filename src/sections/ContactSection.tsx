@@ -40,7 +40,7 @@ export default function ContactSection() {
         }`;
 
     return (
-        <section id="contact" className="py-28 relative overflow-hidden">
+        <section id="contact" className="py-16 sm:py-28 relative overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 bg-card" />
             <div className="absolute inset-0 bg-dot-grid opacity-30 pointer-events-none" />
@@ -49,7 +49,7 @@ export default function ContactSection() {
             {/* Orbs */}
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(ellipse, rgba(124,58,237,0.1) 0%, transparent 70%)' }} />
 
-            <div className="container mx-auto px-6 max-w-6xl relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,7 @@ export default function ContactSection() {
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/20 text-xs font-bold text-primary-light uppercase tracking-widest mb-5">
                         💬 Get In Touch
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-4">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-4">
                         Let's Build{' '}
                         <span className="text-gradient">Together</span>
                     </h2>
@@ -139,7 +139,7 @@ export default function ContactSection() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="lg:col-span-3"
                     >
-                        <div className="p-8 rounded-2xl glass-card border border-white/5 h-full">
+                        <div className="p-5 sm:p-8 rounded-2xl glass-card border border-white/5 h-full">
                             {success ? (
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}

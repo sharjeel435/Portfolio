@@ -28,12 +28,12 @@ const projects = [
 
 export default function ProjectShowcaseSection() {
     return (
-        <section id="work" className="py-28 relative overflow-hidden">
+        <section id="work" className="py-16 sm:py-28 relative overflow-hidden">
             <div className="absolute inset-0 bg-card" />
             <div className="absolute inset-0 bg-dot-grid opacity-30 pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-px section-divider" />
 
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ export default function ProjectShowcaseSection() {
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/20 text-xs font-bold text-primary-light uppercase tracking-widest mb-5">
                         🚀 Selected Projects
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight">
                         Project{' '}
                         <span className="text-gradient">Showcase</span>
                     </h2>
@@ -88,9 +88,9 @@ export default function ProjectShowcaseSection() {
                                 </div>
 
                                 {/* Content */}
-                                <div className="flex-1 p-8 lg:p-10 flex flex-col justify-between">
+                                <div className="flex-1 p-5 sm:p-8 lg:p-10 flex flex-col justify-between">
                                     <div>
-                                        <h3 className="text-2xl lg:text-3xl font-black tracking-tight mb-4 group-hover:text-gradient transition-colors duration-300">
+                                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight mb-3 sm:mb-4 group-hover:text-gradient transition-colors duration-300">
                                             {project.title}
                                         </h3>
                                         <p className="text-foreground/55 leading-relaxed mb-6 text-sm lg:text-base">
