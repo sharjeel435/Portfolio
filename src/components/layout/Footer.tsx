@@ -18,7 +18,7 @@ export default function Footer() {
                         </div>
                         <span className="font-bold text-sm">
                             <span className="text-gradient">Sharjeel</span>
-                            <span className="text-foreground/40">.dev</span>
+                            <span className="text-foreground/40">.portfolio</span>
                         </span>
                         <span className="text-foreground/30 text-sm ml-3 hidden sm:block">
                             — Technical Project Manager

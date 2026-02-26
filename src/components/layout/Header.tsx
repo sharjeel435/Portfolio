@@ -38,8 +38,8 @@ export default function Header() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                        ? 'py-3 glass border-b border-white/5 shadow-[0_8px_40px_rgba(0,0,0,0.5)]'
-                        : 'py-6 bg-transparent'
+                    ? 'py-3 glass border-b border-white/5 shadow-[0_8px_40px_rgba(0,0,0,0.5)]'
+                    : 'py-6 bg-transparent'
                     }`}
             >
                 <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
@@ -56,7 +56,7 @@ export default function Header() {
                         <span className="text-lg font-bold tracking-tight">
                             <span className="text-gradient">Sharjeel</span>
                             <span className="text-foreground/50">.</span>
-                            <span className="text-foreground/80">dev</span>
+                            <span className="text-foreground/80">portfolio</span>
                         </span>
                     </motion.a>
 
@@ -67,8 +67,8 @@ export default function Header() {
                                 key={link.name}
                                 onClick={() => handleNavClick(link.href)}
                                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 group ${activeLink === link.href
-                                        ? 'text-primary-light'
-                                        : 'text-foreground/60 hover:text-foreground'
+                                    ? 'text-primary-light'
+                                    : 'text-foreground/60 hover:text-foreground'
                                     }`}
                             >
                                 {activeLink === link.href && (
