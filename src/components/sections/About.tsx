@@ -161,11 +161,10 @@ export default function About() {
 
             <LineReveal delay={0.1}>
               <h2
-                className="font-display font-black tracking-tight mb-6"
                 style={{
-                  fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
-                  lineHeight: 1.05,
-                  letterSpacing: "-0.035em",
+                  fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+                  lineHeight: 1.02,
+                  letterSpacing: "-0.04em",
                   color: "var(--text-primary)",
                   fontFamily: "var(--font-display)",
                 }}
@@ -177,7 +176,7 @@ export default function About() {
 
             <LineReveal delay={0.2}>
               <p
-                className="text-base sm:text-lg leading-relaxed mb-4"
+                className="mb-4"
                 style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
               >
                 {personal.descriptionLong}
@@ -186,7 +185,7 @@ export default function About() {
 
             <LineReveal delay={0.3}>
               <p
-                className="text-sm leading-relaxed"
+                
                 style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-body)" }}
               >
                 Currently open to{" "}

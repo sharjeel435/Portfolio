@@ -189,7 +189,6 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
             <div className="p-6 sm:p-8 flex flex-col justify-between">
               <div>
                 <h3
-                  className="font-display font-black mb-3"
                   style={{
                     fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
                     lineHeight: 1.1,
@@ -455,11 +454,10 @@ export default function Projects() {
           </LineReveal>
           <LineReveal delay={0.1}>
             <h2
-              className="font-display font-black tracking-tight"
               style={{
-                fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.035em",
+                fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.04em",
                 color: "var(--text-primary)",
                 fontFamily: "var(--font-display)",
               }}

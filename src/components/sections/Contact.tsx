@@ -50,11 +50,10 @@ export default function Contact() {
         {/* Headline */}
         <LineReveal delay={0.1}>
           <h2
-            className="font-display font-black mb-5 tracking-tight"
             style={{
-              fontSize: "clamp(2rem, 5vw, 3.2rem)",
+              fontSize: "clamp(2.2rem, 4.5vw, 3.4rem)",
               lineHeight: 1.1,
-              letterSpacing: "-0.035em",
+              letterSpacing: "-0.04em",
               color: "var(--text-primary)",
               fontFamily: "var(--font-display)",
             }}

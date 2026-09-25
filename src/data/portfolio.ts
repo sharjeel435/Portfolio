@@ -32,9 +32,8 @@ export const experiences = [
     id: "10pearls",
     company: "10Pearls",
     role: "Data Science Intern",
-    // Corrected: summer internship during final year
-    period: "Jun 2025 – Aug 2025",
-    periodShort: "Summer 2025",
+    period: "Jul 2026 – Sep 2026",
+    periodShort: "Summer 2026",
     project: "Air Quality Index (AQI) Forecasting",
     location: "Karachi, Pakistan",
     description:
@@ -60,9 +59,8 @@ export const experiences = [
     id: "gentechnologies",
     company: "Generation Next Technologies",
     role: "AI Engineer — Contract",
-    // Corrected: earlier project engagement
-    period: "Mar 2025 – May 2025",
-    periodShort: "Spring 2025",
+    period: "Apr 2026 – Jun 2026",
+    periodShort: "Spring 2026",
     project: "Snakitos RAG System",
     location: "Remote",
     description:

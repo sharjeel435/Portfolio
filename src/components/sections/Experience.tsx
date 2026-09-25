@@ -151,7 +151,7 @@ function ExperienceCard({ exp, index }: { exp: ExperienceType; index: number }) 
 
         {/* Description */}
         <p
-          className="text-sm sm:text-base leading-relaxed mb-5"
+          className="mb-5"
           style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
         >
           {exp.description}
@@ -260,11 +260,10 @@ export default function Experience() {
           </LineReveal>
           <LineReveal delay={0.1}>
             <h2
-              className="font-display font-black tracking-tight"
               style={{
-                fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.035em",
+                fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.04em",
                 color: "var(--text-primary)",
                 fontFamily: "var(--font-display)",
               }}

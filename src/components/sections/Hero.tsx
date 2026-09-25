@@ -180,12 +180,14 @@ export default function Hero() {
 
         {/* Headline — word-by-word clip reveal */}
         <h1
-          className="font-display font-black tracking-tight mb-6"
           style={{
-            fontSize: "clamp(3rem, 8vw, 6rem)",
-            lineHeight: 1.02,
-            letterSpacing: "-0.04em",
+            fontFamily: "var(--font-display)",
+            fontWeight: 800,
+            fontSize: "clamp(3.2rem, 9vw, 6.5rem)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.05em",
             color: "var(--text-primary)",
+            marginBottom: "1.5rem",
           }}
         >
           {/* Line 1 */}
@@ -255,10 +257,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg sm:text-xl max-w-xl mb-10 leading-relaxed"
           style={{
-            color: "var(--text-secondary)",
             fontFamily: "var(--font-body)",
+            fontSize: "clamp(1.05rem, 2vw, 1.2rem)",
+            fontWeight: 400,
+            lineHeight: 1.65,
+            letterSpacing: "-0.01em",
+            color: "var(--text-secondary)",
+            maxWidth: "36rem",
+            marginBottom: "2.5rem",
           }}
         >
           {personal.description}
