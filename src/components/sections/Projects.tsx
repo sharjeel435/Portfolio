@@ -201,7 +201,7 @@ function FeaturedCard({ project }: { project: typeof projects[0] }) {
                 </h3>
                 <p
                   className="text-sm leading-relaxed mb-4"
-                  style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
+                  style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)", lineHeight: 1.7, letterSpacing: "-0.005em" }}
                 >
                   {project.longDescription}
                 </p>
@@ -353,7 +353,7 @@ function ProjectCard({
             {/* Description */}
             <p
               className="text-sm leading-relaxed flex-1 mb-4"
-              style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
+              style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)", lineHeight: 1.7, letterSpacing: "-0.005em" }}
             >
               {project.description}
             </p>
@@ -445,8 +445,7 @@ export default function Projects() {
             <div className="inline-flex items-center gap-2 mb-5">
               <div className="w-5 h-px" style={{ background: "var(--accent)" }} />
               <span
-                className="text-xs uppercase tracking-widest font-semibold"
-                style={{ color: "var(--accent)", fontFamily: "var(--font-mono)" }}
+                style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)" }}
               >
                 Selected Work
               </span>

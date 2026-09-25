@@ -110,8 +110,7 @@ export default function Skills() {
             <div className="inline-flex items-center gap-2 mb-5">
               <div className="w-5 h-px" style={{ background: "var(--accent)" }} />
               <span
-                className="text-xs uppercase tracking-widest font-semibold"
-                style={{ color: "var(--accent)", fontFamily: "var(--font-mono)" }}
+                style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)" }}
               >
                 Technical Skills
               </span>

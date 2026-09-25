@@ -66,7 +66,7 @@ export default function Contact() {
         <LineReveal delay={0.2}>
           <p
             className="text-base sm:text-lg leading-relaxed mb-10"
-            style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
+            style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)", lineHeight: 1.7, letterSpacing: "-0.005em" }}
           >
             I build the engineering layer between a model and a user — from forecasting
             pipelines and RAG systems to the FastAPI backend that holds them in production.

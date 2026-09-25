@@ -151,8 +151,7 @@ export default function About() {
               <div className="inline-flex items-center gap-2 mb-5">
                 <div className="w-5 h-px" style={{ background: "var(--accent)" }} />
                 <span
-                  className="text-xs uppercase tracking-widest font-semibold"
-                  style={{ color: "var(--accent)", fontFamily: "var(--font-mono)" }}
+                  style={{ fontFamily: "var(--font-mono)", fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)" }}
                 >
                   About Me
                 </span>
@@ -177,7 +176,7 @@ export default function About() {
             <LineReveal delay={0.2}>
               <p
                 className="mb-4"
-                style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
+                style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)", lineHeight: 1.7, letterSpacing: "-0.005em" }}
               >
                 {personal.descriptionLong}
               </p>

@@ -60,22 +60,35 @@ function StatBlock({
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-      className="flex flex-col gap-1"
+      className="flex flex-col gap-1.5"
     >
       <div
-        className="metric-block text-2xl sm:text-3xl font-bold tabular-nums leading-none"
-        style={{ color: "var(--accent)", fontFamily: "var(--font-mono)" }}
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontWeight: 700,
+          fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+          letterSpacing: "-0.03em",
+          lineHeight: 1,
+          color: "var(--accent)",
+        }}
       >
         <Counter
-          to={typeof stat.value === "number" && stat.value < 1000 ? stat.value : stat.value}
+          to={stat.value}
           decimals={stat.value < 10 ? 2 : 0}
           suffix={stat.suffix}
           className="tabular-nums"
         />
       </div>
       <p
-        className="text-xs uppercase tracking-widest font-medium"
-        style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-body)" }}
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.6875rem",
+          fontWeight: 500,
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "var(--text-tertiary)",
+          lineHeight: 1.3,
+        }}
       >
         {stat.label}
       </p>
@@ -157,12 +170,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: -16, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase"
+          className="inline-flex items-center gap-2.5 mb-8"
           style={{
             background: "var(--accent-muted)",
-            border: "1px solid color-mix(in srgb, var(--accent) 30%, transparent)",
+            border: "1px solid var(--accent-border)",
             color: "var(--accent)",
             fontFamily: "var(--font-mono)",
+            fontSize: "0.6875rem",
+            fontWeight: 600,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            padding: "0.375rem 0.875rem",
+            borderRadius: "9999px",
           }}
         >
           <span className="relative flex h-2 w-2">
@@ -364,11 +383,22 @@ export default function Hero() {
 
         {/* Live stat counters */}
         <div
-          className="flex flex-wrap gap-x-10 gap-y-6"
+          className="flex flex-wrap gap-y-6"
           style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem" }}
         >
           {personal.stats.map((stat, i) => (
-            <StatBlock key={stat.label} stat={stat} delay={1.1 + i * 0.1} />
+            <div key={stat.label} className="flex items-stretch">
+              <StatBlock stat={stat} delay={1.1 + i * 0.1} />
+              {i < personal.stats.length - 1 && (
+                <div
+                  className="hidden sm:block mx-8 self-stretch w-px"
+                  style={{ background: "var(--border)" }}
+                />
+              )}
+              {i < personal.stats.length - 1 && (
+                <div className="sm:hidden w-8" />
+              )}
+            </div>
           ))}
         </div>
       </motion.div>
