@@ -1,149 +1,230 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink, ArrowUpRight, Star } from "lucide-react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { Reveal } from "@/components/motion/Reveal";
-import { SectionBadge } from "@/components/ui/Badge";
+import { LineReveal, StaggerContainer, StaggerItem } from "@/components/motion/TextReveal";
+import { TiltCard } from "@/components/motion/MagneticTilt";
 import { projects } from "@/data/portfolio";
 
-const colorMap = {
-  violet: {
-    glow: "rgba(124,58,237,0.18)",
-    border: "rgba(124,58,237,0.35)",
-    badge: "bg-violet-500/10 border-violet-500/25 text-violet-300",
-    metric: "text-violet-300",
-    metricBg: "bg-violet-500/[0.08] border-violet-500/20",
-    tag: "bg-violet-500/10 border-violet-500/20 text-violet-300",
+/* ── Color map ───────────────────────────────────────────────── */
+const colorMap: Record<string, { accent: string; muted: string; border: string }> = {
+  accent: {
+    accent: "var(--accent)",
+    muted: "var(--accent-muted)",
+    border: "color-mix(in srgb, var(--accent) 25%, transparent)",
   },
-  cyan: {
-    glow: "rgba(6,182,212,0.15)",
-    border: "rgba(6,182,212,0.3)",
-    badge: "bg-cyan-500/10 border-cyan-500/25 text-cyan-300",
-    metric: "text-cyan-300",
-    metricBg: "bg-cyan-500/[0.08] border-cyan-500/20",
-    tag: "bg-cyan-500/10 border-cyan-500/20 text-cyan-300",
+  teal: {
+    accent: "var(--teal)",
+    muted: "var(--teal-muted)",
+    border: "color-mix(in srgb, var(--teal) 25%, transparent)",
   },
   emerald: {
-    glow: "rgba(16,185,129,0.15)",
-    border: "rgba(16,185,129,0.3)",
-    badge: "bg-emerald-500/10 border-emerald-500/25 text-emerald-300",
-    metric: "text-emerald-300",
-    metricBg: "bg-emerald-500/[0.08] border-emerald-500/20",
-    tag: "bg-emerald-500/10 border-emerald-500/20 text-emerald-300",
+    accent: "#22c55e",
+    muted: "rgba(34,197,94,0.1)",
+    border: "rgba(34,197,94,0.25)",
   },
   amber: {
-    glow: "rgba(245,158,11,0.12)",
-    border: "rgba(245,158,11,0.28)",
-    badge: "bg-amber-500/10 border-amber-500/25 text-amber-300",
-    metric: "text-amber-300",
-    metricBg: "bg-amber-500/[0.08] border-amber-500/20",
-    tag: "bg-amber-500/10 border-amber-500/20 text-amber-300",
+    accent: "#f59e0b",
+    muted: "rgba(245,158,11,0.1)",
+    border: "rgba(245,158,11,0.25)",
   },
 };
 
-type ColorKey = keyof typeof colorMap;
+/* ── AQI Pipeline SVG Diagram ────────────────────────────────── */
+function AQIPipelineDiagram() {
+  const ref = useRef<SVGSVGElement>(null);
+  const isInView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-60px" });
 
-interface ProjectCardProps {
-  project: (typeof projects)[0];
-  index: number;
-  featured?: boolean;
+  const nodes = [
+    { label: "Open-Meteo", sub: "4yr Data", x: 60, y: 50 },
+    { label: "Feature Eng.", sub: "354 features", x: 200, y: 50 },
+    { label: "Random Forest", sub: "R² 0.82", x: 340, y: 50 },
+    { label: "FastAPI", sub: "REST Backend", x: 480, y: 50 },
+    { label: "Dashboard", sub: "Next.js UI", x: 620, y: 50 },
+  ];
+
+  const paths = [
+    { d: "M 110 50 L 160 50" },
+    { d: "M 250 50 L 300 50" },
+    { d: "M 390 50 L 440 50" },
+    { d: "M 530 50 L 580 50" },
+  ];
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full p-4 sm:p-6">
+      <p
+        className="text-[10px] uppercase tracking-widest font-semibold mb-6"
+        style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-mono)" }}
+      >
+        AQI Forecasting Pipeline
+      </p>
+      <div className="w-full overflow-x-auto">
+        <svg
+          ref={ref}
+          viewBox="0 0 700 100"
+          className="w-full"
+          style={{ minWidth: "400px", height: "100px" }}
+          aria-label="AQI Forecasting Pipeline diagram"
+        >
+          {/* Connector lines */}
+          {paths.map((p, i) => (
+            <motion.path
+              key={i}
+              d={p.d}
+              stroke="var(--border-strong)"
+              strokeWidth="1.5"
+              strokeDasharray="4 2"
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={isInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 + i * 0.25, ease: "easeOut" }}
+            />
+          ))}
+          {/* Arrow heads */}
+          {paths.map((_, i) => (
+            <motion.polygon
+              key={`arrow-${i}`}
+              points={`${160 + i * 140},46 ${168 + i * 140},50 ${160 + i * 140},54`}
+              fill="var(--border-strong)"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.3, delay: 0.9 + i * 0.25 }}
+            />
+          ))}
+
+          {/* Nodes */}
+          {nodes.map((node, i) => (
+            <motion.g
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.18, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <rect
+                x={node.x - 48}
+                y={node.y - 28}
+                width="96"
+                height="56"
+                rx="8"
+                fill="var(--bg-elevated)"
+                stroke="var(--border-strong)"
+                strokeWidth="1"
+              />
+              {/* Accent top bar on node */}
+              <rect
+                x={node.x - 48}
+                y={node.y - 28}
+                width="96"
+                height="3"
+                rx="2"
+                fill="var(--accent)"
+              />
+              <text
+                x={node.x}
+                y={node.y - 5}
+                textAnchor="middle"
+                fontSize="8"
+                fontWeight="700"
+                fill="var(--text-primary)"
+                fontFamily="var(--font-display)"
+              >
+                {node.label}
+              </text>
+              <text
+                x={node.x}
+                y={node.y + 9}
+                textAnchor="middle"
+                fontSize="7"
+                fill="var(--text-tertiary)"
+                fontFamily="var(--font-mono)"
+              >
+                {node.sub}
+              </text>
+            </motion.g>
+          ))}
+        </svg>
+      </div>
+    </div>
+  );
 }
 
-function ProjectCard({ project, index, featured }: ProjectCardProps) {
-  const colors = colorMap[project.color as ColorKey] || colorMap.violet;
+/* ── Featured Project Card ───────────────────────────────────── */
+function FeaturedCard({ project }: { project: typeof projects[0] }) {
+  const colors = colorMap[project.color] || colorMap.accent;
 
-  if (featured) {
-    return (
-      <Reveal delay={index * 0.1}>
-        <motion.div
-          whileHover={{ y: -4 }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="group relative rounded-2xl border border-white/[0.08] overflow-hidden bg-white/[0.02] hover:border-white/[0.13] transition-all duration-400"
+  return (
+    <LineReveal delay={0.2}>
+      <TiltCard maxTilt={3} glare className="w-full">
+        <div
+          className="rounded-2xl overflow-hidden"
           style={{
-            boxShadow: `0 4px 40px rgba(0,0,0,0.4)`,
+            background: "var(--bg-surface)",
+            border: `1px solid ${colors.border}`,
+            boxShadow: `var(--shadow-md), 0 0 0 1px ${colors.border}`,
           }}
         >
-          {/* Hover glow overlay */}
+          {/* Featured label */}
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-            style={{
-              boxShadow: `inset 0 0 0 1px ${colors.border}, 0 0 60px ${colors.glow}`,
-            }}
-          />
+            className="flex items-center justify-between px-6 py-3"
+            style={{ borderBottom: "1px solid var(--border)" }}
+          >
+            <span
+              className="text-[10px] uppercase tracking-widest font-bold"
+              style={{ color: colors.accent, fontFamily: "var(--font-mono)" }}
+            >
+              ★ Featured Project
+            </span>
+            <span
+              className="text-[10px] px-2 py-0.5 rounded-full"
+              style={{ background: colors.muted, color: colors.accent, fontFamily: "var(--font-mono)" }}
+            >
+              {project.label}
+            </span>
+          </div>
 
-          <div className="flex flex-col lg:flex-row">
-            {/* Image panel */}
-            <div className="relative lg:w-[45%] h-56 sm:h-64 lg:h-auto overflow-hidden bg-white/[0.03] shrink-0">
-              <div
-                className="absolute inset-0 z-10"
-                style={{
-                  background: `linear-gradient(to right, transparent 60%, rgba(10,10,20,0.95)), linear-gradient(to bottom, transparent 70%, rgba(10,10,20,0.9))`,
-                }}
-              />
-              {/* Background gradient for when no image */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.glow} 0%, rgba(0,0,0,0.3) 100%)`,
-                }}
-              />
-              {/* Project image */}
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
-              />
-              {/* Overlay icon when no image */}
-              <div className="absolute inset-0 flex items-center justify-center z-0">
-                <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center"
-                  style={{ background: colors.glow }}
-                >
-                  <Star className={`w-7 h-7 ${colors.metric}`} />
-                </div>
-              </div>
-
-              {/* Featured badge */}
-              <div className="absolute top-4 left-4 z-20">
-                <span
-                  className={`text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full border ${colors.badge} backdrop-blur-md`}
-                >
-                  ★ Featured
-                </span>
-              </div>
-            </div>
-
-            {/* Content panel */}
-            <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+          <div className="grid lg:grid-cols-2 gap-0">
+            {/* Content */}
+            <div className="p-6 sm:p-8 flex flex-col justify-between">
               <div>
-                <div className="flex items-start justify-between gap-4 mb-2">
-                  <div>
-                    <p className="text-xs text-white/35 uppercase tracking-widest font-semibold mb-1">
-                      {project.label}
-                    </p>
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
-                      {project.name}
-                    </h3>
-                  </div>
-                </div>
-
-                <p className="text-white/50 leading-relaxed text-sm lg:text-base mb-5 mt-3">
-                  {project.description}
+                <h3
+                  className="font-display font-black mb-3"
+                  style={{
+                    fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)",
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.03em",
+                    color: "var(--text-primary)",
+                    fontFamily: "var(--font-display)",
+                  }}
+                >
+                  {project.name}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed mb-4"
+                  style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
+                >
+                  {project.longDescription}
                 </p>
 
                 {/* Metrics */}
                 {project.metrics.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-5">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.metrics.map((m) => (
                       <div
                         key={m.label}
-                        className={`flex flex-col items-center px-3.5 py-2 rounded-xl border ${colors.metricBg}`}
+                        className="metric-block flex flex-col items-center px-3 py-2"
                       >
-                        <span className={`text-sm font-black ${colors.metric}`}>{m.value}</span>
-                        <span className="text-[10px] text-white/35 uppercase tracking-wide leading-none mt-0.5">
+                        <span
+                          className="text-sm font-bold"
+                          style={{ color: colors.accent, fontFamily: "var(--font-mono)" }}
+                        >
+                          {m.value}
+                        </span>
+                        <span
+                          className="text-[10px] mt-0.5"
+                          style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-body)" }}
+                        >
                           {m.label}
                         </span>
                       </div>
@@ -152,11 +233,17 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
                 )}
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tags.map((tag) => (
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.slice(0, 6).map((tag) => (
                     <span
                       key={tag}
-                      className={`text-[10px] font-semibold px-2.5 py-1 rounded-full border ${colors.tag}`}
+                      className="text-[11px] px-2 py-0.5 rounded-full"
+                      style={{
+                        background: "var(--bg-elevated)",
+                        color: "var(--text-tertiary)",
+                        border: "1px solid var(--border)",
+                        fontFamily: "var(--font-body)",
+                      }}
                     >
                       {tag}
                     </span>
@@ -164,163 +251,245 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
                 </div>
               </div>
 
-              {/* CTA */}
-              <div className="flex items-center gap-3">
-                {project.url && (
-                  <motion.a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ x: 3 }}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.05] border border-white/[0.10] hover:border-white/[0.20] text-sm font-semibold text-white/70 hover:text-white transition-all"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    Live Demo
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </motion.a>
-                )}
-              </div>
+              {/* Link */}
+              {project.url && (
+                <motion.a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-6 text-sm font-semibold self-start"
+                  style={{ color: colors.accent, fontFamily: "var(--font-body)" }}
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Live Demo
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </motion.a>
+              )}
+            </div>
+
+            {/* Diagram / visual */}
+            <div
+              className="relative min-h-[200px] lg:min-h-0 flex items-center justify-center"
+              style={{ borderLeft: "1px solid var(--border)" }}
+            >
+              {project.image ? (
+                <div className="absolute inset-0">
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} screenshot`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover opacity-60"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(to bottom, transparent 30%, var(--bg-surface) 100%)",
+                    }}
+                  />
+                </div>
+              ) : (
+                <AQIPipelineDiagram />
+              )}
             </div>
           </div>
-        </motion.div>
-      </Reveal>
-    );
-  }
-
-  // Standard card
-  return (
-    <Reveal delay={index * 0.1}>
-      <motion.div
-        whileHover={{ y: -4 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        className="group relative rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:border-white/[0.12] transition-all duration-300 overflow-hidden h-full"
-      >
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-          style={{ background: `radial-gradient(ellipse at top, ${colors.glow} 0%, transparent 65%)` }}
-        />
-
-        <div className="relative p-6 flex flex-col h-full">
-          {/* Label */}
-          <span className={`text-[10px] font-bold uppercase tracking-widest ${colors.metric} opacity-70 mb-3`}>
-            {project.label}
-          </span>
-
-          {/* Title */}
-          <h3 className="text-lg font-bold text-white/90 mb-2">{project.name}</h3>
-
-          {/* Description */}
-          <p className="text-sm text-white/45 leading-relaxed mb-4 flex-1">{project.description}</p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {project.tags.slice(0, 5).map((tag) => (
-              <span
-                key={tag}
-                className={`text-[10px] font-semibold px-2.5 py-1 rounded-full border ${colors.tag}`}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* CTA */}
-          {project.url && (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/40 hover:text-white/70 transition-colors"
-            >
-              <ExternalLink className="w-3 h-3" />
-              View Project
-            </a>
-          )}
         </div>
-
-        {/* Bottom accent line */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-          style={{
-            background: `linear-gradient(90deg, transparent, ${colors.border}, transparent)`,
-          }}
-        />
-      </motion.div>
-    </Reveal>
+      </TiltCard>
+    </LineReveal>
   );
 }
 
+/* ── Standard Project Card ───────────────────────────────────── */
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: typeof projects[0];
+  index: number;
+}) {
+  const colors = colorMap[project.color] || colorMap.accent;
+
+  return (
+    <StaggerItem>
+      <TiltCard maxTilt={6} glare>
+        <motion.div
+          className="h-full rounded-2xl overflow-hidden flex flex-col"
+          style={{
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border)",
+            boxShadow: "var(--shadow-sm)",
+          }}
+          whileHover={{ boxShadow: "var(--shadow-lg)" }}
+          transition={{ duration: 0.25 }}
+        >
+          {/* Top accent bar */}
+          <div className="h-1 w-full" style={{ background: colors.accent }} />
+
+          <div className="p-6 sm:p-7 flex flex-col flex-1">
+            {/* Label */}
+            <p
+              className="text-[10px] uppercase tracking-widest font-semibold mb-3"
+              style={{ color: colors.accent, fontFamily: "var(--font-mono)" }}
+            >
+              {project.label}
+            </p>
+
+            {/* Title */}
+            <h3
+              className="font-display font-bold mb-3"
+              style={{
+                fontSize: "1.2rem",
+                lineHeight: 1.2,
+                letterSpacing: "-0.025em",
+                color: "var(--text-primary)",
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              {project.name}
+            </h3>
+
+            {/* Description */}
+            <p
+              className="text-sm leading-relaxed flex-1 mb-4"
+              style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
+            >
+              {project.description}
+            </p>
+
+            {/* Metrics if any */}
+            {project.metrics.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.metrics.map((m) => (
+                  <div
+                    key={m.label}
+                    className="metric-block flex flex-col items-center px-2.5 py-1.5"
+                  >
+                    <span
+                      className="text-xs font-bold"
+                      style={{ color: colors.accent, fontFamily: "var(--font-mono)" }}
+                    >
+                      {m.value}
+                    </span>
+                    <span
+                      className="text-[9px]"
+                      style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-body)" }}
+                    >
+                      {m.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {project.tags.slice(0, 5).map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[11px] px-2 py-0.5 rounded-full"
+                  style={{
+                    background: "var(--bg-elevated)",
+                    color: "var(--text-tertiary)",
+                    border: "1px solid var(--border)",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Link */}
+            {project.url && (
+              <motion.a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold"
+                style={{ color: colors.accent, fontFamily: "var(--font-body)" }}
+                whileHover={{ x: 3 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                View Project
+              </motion.a>
+            )}
+          </div>
+        </motion.div>
+      </TiltCard>
+    </StaggerItem>
+  );
+}
+
+/* ── Main Section ────────────────────────────────────────────── */
 export default function Projects() {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0a0a14]" />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(124,58,237,0.3), rgba(6,182,212,0.2), transparent)",
-        }}
-      />
-      {/* Ambient glow */}
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse, rgba(109,40,217,0.09) 0%, transparent 70%)",
-        }}
-      />
+    <section
+      id="projects"
+      className="relative overflow-hidden"
+      style={{ paddingTop: "7rem", paddingBottom: "7rem" }}
+    >
+      <div className="absolute inset-0" style={{ background: "var(--bg-base)" }} />
+      <div className="absolute inset-0 bg-dots opacity-50" />
+      <div className="absolute top-0 left-0 right-0 section-divider" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
         {/* Header */}
         <div className="mb-14">
-          <Reveal>
-            <SectionBadge className="mb-5">Selected Work</SectionBadge>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
-              Projects That{" "}
+          <LineReveal delay={0}>
+            <div className="inline-flex items-center gap-2 mb-5">
+              <div className="w-5 h-px" style={{ background: "var(--accent)" }} />
               <span
-                style={{
-                  background: "linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
+                className="text-xs uppercase tracking-widest font-semibold"
+                style={{ color: "var(--accent)", fontFamily: "var(--font-mono)" }}
               >
-                Ship.
+                Selected Work
               </span>
+            </div>
+          </LineReveal>
+          <LineReveal delay={0.1}>
+            <h2
+              className="font-display font-black tracking-tight"
+              style={{
+                fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.035em",
+                color: "var(--text-primary)",
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              Things I&apos;ve{" "}
+              <span style={{ color: "var(--accent)" }}>Shipped.</span>
             </h2>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="text-white/45 text-base sm:text-lg max-w-xl">
-              ML systems, RAG pipelines, and AI-powered applications built end-to-end.
-            </p>
-          </Reveal>
+          </LineReveal>
         </div>
 
-        {/* Featured project */}
-        <div className="mb-8">
-          {featured.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} featured />
-          ))}
-        </div>
+        {/* Featured */}
+        {featured.map((p) => (
+          <div key={p.id} className="mb-8">
+            <FeaturedCard project={p} />
+          </div>
+        ))}
 
-        {/* Grid of other projects */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {rest.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i + 1} />
+        {/* Grid */}
+        <StaggerContainer
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          stagger={0.1}
+          delay={0.1}
+        >
+          {rest.map((p, i) => (
+            <ProjectCard key={p.id} project={p} index={i} />
           ))}
-        </div>
+        </StaggerContainer>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 section-divider" />
     </section>
   );
 }

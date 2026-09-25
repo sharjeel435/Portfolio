@@ -1,112 +1,145 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, GitBranch, ArrowRight, Send } from "lucide-react";
-import { Reveal } from "@/components/motion/Reveal";
+import { Mail, GitBranch } from "lucide-react";
+import { LineReveal } from "@/components/motion/TextReveal";
+import { Magnetic } from "@/components/motion/MagneticTilt";
 import { personal } from "@/data/portfolio";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-[#07070f]" />
+    <section
+      id="contact"
+      className="relative overflow-hidden"
+      style={{ paddingTop: "8rem", paddingBottom: "8rem" }}
+    >
+      <div className="absolute inset-0" style={{ background: "var(--bg-surface)" }} />
+      <div className="absolute inset-0 bg-grid opacity-30" />
+
+      {/* Ambient accent glow */}
       <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-        }}
-      />
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg, transparent, rgba(124,58,237,0.3), rgba(6,182,212,0.2), transparent)",
+            "radial-gradient(ellipse at bottom, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%)",
+          filter: "blur(20px)",
         }}
       />
 
-      {/* Ambient violet glow */}
-      <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse, rgba(109,40,217,0.12) 0%, transparent 70%)",
-        }}
-      />
+      <div className="absolute top-0 left-0 right-0 section-divider" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
-        {/* Centered content */}
-        <div className="max-w-2xl mx-auto text-center">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-violet-500/20 text-[11px] font-semibold uppercase tracking-widest text-violet-400 mb-6">
-              <Send className="w-3.5 h-3.5" />
-              Get In Touch
-            </div>
-          </Reveal>
+      <div className="relative z-10 max-w-2xl mx-auto px-5 sm:px-8 text-center">
+        {/* Availability badge */}
+        <LineReveal delay={0}>
+          <div className="inline-flex items-center gap-2 mb-8">
+            <motion.div
+              animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-2 h-2 rounded-full"
+              style={{ background: "#22c55e" }}
+            />
+            <span
+              className="text-xs uppercase tracking-widest font-semibold"
+              style={{ color: "#22c55e", fontFamily: "var(--font-mono)" }}
+            >
+              {personal.status}
+            </span>
+          </div>
+        </LineReveal>
 
-          <Reveal delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white mb-5 leading-[1.05]">
-              Have an AI problem{" "}
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                worth solving?
-              </span>
-            </h2>
-          </Reveal>
+        {/* Headline */}
+        <LineReveal delay={0.1}>
+          <h2
+            className="font-display font-black mb-5 tracking-tight"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.2rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.035em",
+              color: "var(--text-primary)",
+              fontFamily: "var(--font-display)",
+            }}
+          >
+            Have an AI problem{" "}
+            <span style={{ color: "var(--accent)" }}>worth solving?</span>
+          </h2>
+        </LineReveal>
 
-          <Reveal delay={0.2}>
-            <p className="text-white/45 text-base sm:text-lg leading-relaxed mb-10">
-              I&apos;m open to AI engineering, machine-learning, RAG and data-focused
-              opportunities. Let&apos;s build something intelligent.
-            </p>
-          </Reveal>
+        <LineReveal delay={0.2}>
+          <p
+            className="text-base sm:text-lg leading-relaxed mb-10"
+            style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
+          >
+            I build the engineering layer between a model and a user — from forecasting
+            pipelines and RAG systems to the FastAPI backend that holds them in production.
+            Let&apos;s talk.
+          </p>
+        </LineReveal>
 
-          <Reveal delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <motion.a
+        {/* CTAs */}
+        <LineReveal delay={0.3}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <Magnetic strength={0.3}>
+              <a
                 href={`mailto:${personal.email}`}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold shadow-[0_0_28px_rgba(124,58,237,0.4)] hover:shadow-[0_0_40px_rgba(124,58,237,0.55)] transition-all w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-sm font-semibold w-full sm:w-auto justify-center transition-all"
+                style={{
+                  background: "var(--accent)",
+                  color: "var(--accent-fg)",
+                  fontFamily: "var(--font-body)",
+                  boxShadow: "var(--shadow-accent)",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.background = "var(--accent-hover)")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.background = "var(--accent)")
+                }
               >
                 <Mail className="w-4 h-4" />
                 Get in Touch
-                <ArrowRight className="w-4 h-4" />
-              </motion.a>
+              </a>
+            </Magnetic>
 
-              <motion.a
+            <Magnetic strength={0.3}>
+              <a
                 href={personal.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] text-white/70 hover:text-white text-sm font-semibold border border-white/[0.09] hover:border-white/[0.18] transition-all w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-sm font-semibold w-full sm:w-auto justify-center transition-all"
+                style={{
+                  background: "var(--bg-base)",
+                  color: "var(--text-primary)",
+                  border: "1px solid var(--border-strong)",
+                  fontFamily: "var(--font-body)",
+                  boxShadow: "var(--shadow-sm)",
+                }}
               >
                 <GitBranch className="w-4 h-4" />
                 View GitHub
-              </motion.a>
-            </div>
-          </Reveal>
-
-          {/* Email display */}
-          <Reveal delay={0.4}>
-            <div className="mt-8">
-              <a
-                href={`mailto:${personal.email}`}
-                className="text-sm text-white/30 hover:text-white/55 transition-colors font-mono"
-              >
-                {personal.email}
               </a>
-            </div>
-          </Reveal>
-        </div>
+            </Magnetic>
+          </div>
+        </LineReveal>
+
+        {/* Email mono display */}
+        <LineReveal delay={0.4}>
+          <a
+            href={`mailto:${personal.email}`}
+            className="inline-block text-sm transition-colors"
+            style={{
+              color: "var(--text-tertiary)",
+              fontFamily: "var(--font-mono)",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = "var(--accent)")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLElement).style.color = "var(--text-tertiary)")
+            }
+          >
+            {personal.email}
+          </a>
+        </LineReveal>
       </div>
     </section>
   );

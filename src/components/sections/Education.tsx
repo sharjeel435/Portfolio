@@ -1,98 +1,194 @@
 "use client";
 
-import { GraduationCap, Calendar, BookOpen } from "lucide-react";
-import { Reveal } from "@/components/motion/Reveal";
-import { SectionBadge, Badge } from "@/components/ui/Badge";
+import { LineReveal, StaggerContainer, StaggerItem } from "@/components/motion/TextReveal";
+import { motion } from "framer-motion";
+import { GraduationCap, BookOpen } from "lucide-react";
 import { education } from "@/data/portfolio";
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0a0a14]" />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(124,58,237,0.3), rgba(6,182,212,0.2), transparent)",
-        }}
-      />
+    <section
+      id="education"
+      className="relative overflow-hidden"
+      style={{ paddingTop: "7rem", paddingBottom: "7rem" }}
+    >
+      <div className="absolute inset-0" style={{ background: "var(--bg-base)" }} />
+      <div className="absolute inset-0 bg-dots opacity-40" />
+      <div className="absolute top-0 left-0 right-0 section-divider" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
         {/* Header */}
         <div className="mb-14">
-          <Reveal>
-            <SectionBadge className="mb-5">Education</SectionBadge>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
-              Academic{" "}
+          <LineReveal delay={0}>
+            <div className="inline-flex items-center gap-2 mb-5">
+              <div className="w-5 h-px" style={{ background: "var(--accent)" }} />
               <span
+                className="text-xs uppercase tracking-widest font-semibold"
+                style={{ color: "var(--accent)", fontFamily: "var(--font-mono)" }}
+              >
+                Education
+              </span>
+            </div>
+          </LineReveal>
+          <LineReveal delay={0.1}>
+            <h2
+              className="font-display font-black tracking-tight"
+              style={{
+                fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.035em",
+                color: "var(--text-primary)",
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              Academic{" "}
+              <span style={{ color: "var(--accent)" }}>Foundation.</span>
+            </h2>
+          </LineReveal>
+        </div>
+
+        <StaggerContainer className="space-y-5" stagger={0.15} delay={0.1}>
+          {education.map((edu, i) => (
+            <StaggerItem key={edu.institution}>
+              <motion.div
+                whileHover={{ y: -3, boxShadow: "var(--shadow-md)" }}
+                transition={{ duration: 0.25 }}
+                className="rounded-2xl overflow-hidden"
                 style={{
-                  background: "linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border)",
+                  boxShadow: "var(--shadow-sm)",
                 }}
               >
-                Foundation.
-              </span>
-            </h2>
-          </Reveal>
-        </div>
+                {/* Accent top bar */}
+                <div
+                  className="h-1 w-full"
+                  style={{ background: i === 0 ? "var(--accent)" : "var(--teal)" }}
+                />
 
-        {/* Education cards */}
-        <div className="space-y-5">
-          {education.map((edu, i) => (
-            <Reveal key={edu.institution} delay={i * 0.12}>
-              <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-white/[0.11] transition-all">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                  <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-violet-500/10 flex items-center justify-center shrink-0">
-                      <GraduationCap className="w-5 h-5 text-violet-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-white/90">{edu.institution}</h3>
-                      <p className="text-sm text-violet-400 font-medium">{edu.degree}</p>
-                      {edu.grade && (
-                        <p className="text-xs text-emerald-400 font-semibold mt-0.5">{edu.grade}</p>
+                <div className="p-6 sm:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-5">
+                    {/* Icon */}
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                      style={{
+                        background: i === 0 ? "var(--accent-muted)" : "var(--teal-muted)",
+                      }}
+                    >
+                      {i === 0 ? (
+                        <GraduationCap
+                          className="w-5 h-5"
+                          style={{ color: "var(--accent)" }}
+                        />
+                      ) : (
+                        <BookOpen
+                          className="w-5 h-5"
+                          style={{ color: "var(--teal)" }}
+                        />
                       )}
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs text-white/35 shrink-0">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {edu.period}
-                  </div>
-                </div>
 
-                {edu.coursework.length > 0 && (
-                  <div className="mt-5 pt-5 border-t border-white/[0.06]">
-                    <div className="flex items-center gap-2 mb-3">
-                      <BookOpen className="w-3.5 h-3.5 text-white/30" />
-                      <p className="text-xs text-white/35 uppercase tracking-widest font-semibold">
-                        Relevant Coursework
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {edu.coursework.map((course) => (
-                        <Badge key={course} variant="outline">
-                          {course}
-                        </Badge>
-                      ))}
+                    {/* Details */}
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-start justify-between gap-3 mb-1">
+                        <div>
+                          <h3
+                            className="font-display font-bold text-lg"
+                            style={{
+                              color: "var(--text-primary)",
+                              fontFamily: "var(--font-display)",
+                              letterSpacing: "-0.02em",
+                            }}
+                          >
+                            {edu.institution}
+                          </h3>
+                          <p
+                            className="text-sm mt-0.5"
+                            style={{
+                              color: "var(--text-secondary)",
+                              fontFamily: "var(--font-body)",
+                            }}
+                          >
+                            {edu.degree}
+                          </p>
+                        </div>
+
+                        {/* Badges */}
+                        <div className="flex flex-wrap gap-2">
+                          <span
+                            className="text-[11px] px-2.5 py-1 rounded-full font-semibold"
+                            style={{
+                              background: "rgba(34,197,94,0.1)",
+                              color: "#22c55e",
+                              border: "1px solid rgba(34,197,94,0.25)",
+                              fontFamily: "var(--font-mono)",
+                            }}
+                          >
+                            ✓ {edu.status}
+                          </span>
+                          {edu.grade && (
+                            <span
+                              className="text-[11px] px-2.5 py-1 rounded-full font-semibold"
+                              style={{
+                                background: "var(--accent-muted)",
+                                color: "var(--accent)",
+                                border: "1px solid color-mix(in srgb, var(--accent) 25%, transparent)",
+                                fontFamily: "var(--font-mono)",
+                              }}
+                            >
+                              {edu.grade}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <span
+                        className="text-xs"
+                        style={{ color: "var(--text-tertiary)", fontFamily: "var(--font-mono)" }}
+                      >
+                        {edu.period}
+                      </span>
                     </div>
                   </div>
-                )}
-              </div>
-            </Reveal>
+
+                  {/* Coursework */}
+                  {edu.coursework.length > 0 && (
+                    <div>
+                      <p
+                        className="text-[10px] uppercase tracking-widest mb-3 font-semibold"
+                        style={{
+                          color: "var(--text-tertiary)",
+                          fontFamily: "var(--font-mono)",
+                        }}
+                      >
+                        Key Coursework
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {edu.coursework.map((c) => (
+                          <span
+                            key={c}
+                            className="text-xs px-3 py-1 rounded-full"
+                            style={{
+                              background: "var(--bg-elevated)",
+                              color: "var(--text-secondary)",
+                              border: "1px solid var(--border)",
+                              fontFamily: "var(--font-body)",
+                            }}
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 section-divider" />
     </section>
   );
 }
